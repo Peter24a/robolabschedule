@@ -1,0 +1,6 @@
+sqlalchemy
+streamlit
+passlib
+bcrypt
+numpy
+pandas
