@@ -4,14 +4,15 @@ from core.crud import (
     get_system_setting, set_system_setting, clear_schedule, create_reservation,
     get_all_teams, get_user_availability, get_all_group_blocks, get_all_reservations,
     delete_reservation, get_users_by_team, get_all_users, update_user_role_and_team,
-    create_team
+    create_team, set_robotics_class_schedule, get_robotics_class_schedule_by_teacher,
+    get_all_robotics_class_schedules
 )
 from engine.ga_engine import GeneticAlgorithmEngine
 from core.models import (
-    KEY_OPENING_HOUR, KEY_CLOSING_HOUR, KEY_MANUAL_MODE, KEY_SCHEDULE_STATUS,
+    KEY_FIRST_PERIOD, KEY_MANUAL_MODE, KEY_SCHEDULE_STATUS,
     ScheduleState, UserRole, GroupName
 )
-from ui.components import schedule_grid
+from ui.components import schedule_grid, availability_grid
 import pandas as pd
 
 def admin_dashboard():
@@ -24,19 +25,21 @@ def admin_dashboard():
 
     # --- TAB 1: Gestión de Horarios ---
     with tab1:
-        # 1. System Settings
         st.header("Configuración del Sistema")
 
         col1, col2 = st.columns(2)
 
         with col1:
-            opening_hour = int(get_system_setting(db, KEY_OPENING_HOUR, "7"))
-            closing_hour = int(get_system_setting(db, KEY_CLOSING_HOUR, "18"))
-
-            # Opening Hour Selection (7 or 9)
-            new_opening = st.selectbox("Hora de Apertura", [7, 9], index=0 if opening_hour==7 else 1)
-            if new_opening != opening_hour:
-                set_system_setting(db, KEY_OPENING_HOUR, str(new_opening))
+            first_period = int(get_system_setting(db, KEY_FIRST_PERIOD, "1"))
+            period_options = {1: "Período 1 (7:00)", 3: "Período 3 (9:10)"}
+            new_first_period = st.selectbox(
+                "Período de Apertura",
+                options=list(period_options.keys()),
+                format_func=lambda x: period_options[x],
+                index=0 if first_period == 1 else 1
+            )
+            if new_first_period != first_period:
+                set_system_setting(db, KEY_FIRST_PERIOD, str(new_first_period))
                 st.rerun()
 
         with col2:
@@ -46,11 +49,32 @@ def admin_dashboard():
                 set_system_setting(db, KEY_MANUAL_MODE, str(new_manual).lower())
                 st.rerun()
 
-        st.write(f"Hora de Cierre: {closing_hour}:00 (Fijo)")
-
         st.divider()
 
-        # 2. Schedule Generation (GA)
+        # --- Robotics Class Schedule for Moya (Group B) ---
+        teacher_group = user.get('group_name')
+        if teacher_group:
+            st.header(f"Mi Horario de Clases de Robótica (Grupo {teacher_group})")
+            st.write("Selecciona los períodos en los que impartes tu clase de robótica. Estos períodos quedarán reservados obligatoriamente para tu grupo en el laboratorio.")
+
+            teacher_id = user['id']
+            existing_rcs = get_robotics_class_schedule_by_teacher(db, teacher_id)
+            current_rcs_slots = [(r.day_of_week, r.period) for r in existing_rcs]
+
+            new_rcs_slots = availability_grid(
+                current_rcs_slots,
+                key_prefix=f"rcs_admin_{teacher_id}",
+                title="Horario de Clase Robótica"
+            )
+
+            if st.button("Guardar Horario de Clase"):
+                set_robotics_class_schedule(db, teacher_id, GroupName(teacher_group), new_rcs_slots)
+                st.success("Horario de clase guardado.")
+                st.rerun()
+
+            st.divider()
+
+        # --- Schedule Generation (GA) ---
         st.header("Generación de Horarios (IA)")
 
         current_status = get_system_setting(db, KEY_SCHEDULE_STATUS, ScheduleState.NONE)
@@ -62,7 +86,6 @@ def admin_dashboard():
             if st.button("Ejecutar Algoritmo Genético"):
                 with st.spinner("Ejecutando GA... Esto puede tardar unos segundos..."):
                     try:
-                        # Prepare data for GA
                         teams = get_all_teams(db)
                         teams_data = []
                         for t in teams:
@@ -76,27 +99,40 @@ def admin_dashboard():
                             })
 
                         availabilities = {}
-                        # Fetch availabilities for all users
                         for t in teams:
                             for m in t.members:
                                 avails = get_user_availability(db, m.id)
-                                availabilities[m.id] = set((a.day_of_week, a.hour) for a in avails)
+                                availabilities[m.id] = set((a.day_of_week, a.period) for a in avails)
 
                         group_blocks = set()
                         blocks = get_all_group_blocks(db)
                         for b in blocks:
-                            group_blocks.add((b.group_name, b.day_of_week, b.hour))
+                            group_blocks.add((b.group_name, b.day_of_week, b.period))
 
-                        ga = GeneticAlgorithmEngine(teams_data, availabilities, group_blocks, opening_hour, closing_hour)
+                        # Robotics class slots
+                        robotics_schedules = get_all_robotics_class_schedules(db)
+                        robotics_class_slots = [
+                            {'group_name': r.group_name, 'day': r.day_of_week, 'period': r.period}
+                            for r in robotics_schedules
+                        ]
+
+                        ga = GeneticAlgorithmEngine(
+                            teams_data, availabilities, group_blocks,
+                            robotics_class_slots, first_period
+                        )
                         schedule = ga.run()
 
-                        # Save as Draft
-                        clear_schedule(db, keep_manual=False) # Clear previous GA schedule
+                        clear_schedule(db, keep_manual=False)
                         for item in schedule:
                             try:
-                                create_reservation(db, item['team_id'], item['day_of_week'], item['hour'], is_manual=False)
+                                create_reservation(
+                                    db, item['team_id'], item['day_of_week'], item['period'],
+                                    is_manual=False,
+                                    is_robotics_class=item.get('is_robotics_class', False),
+                                    group_name=item.get('group_name')
+                                )
                             except ValueError:
-                                pass # Duplicate? Should not happen if GA is correct.
+                                pass
 
                         set_system_setting(db, KEY_SCHEDULE_STATUS, ScheduleState.DRAFT)
                         st.success("Horario generado (Borrador). Revísalo abajo.")
@@ -104,8 +140,6 @@ def admin_dashboard():
                     except Exception as e:
                         st.error(f"Error al ejecutar el algoritmo genético: {str(e)}")
 
-
-            # Review Schedule
             reservations = get_all_reservations(db)
             if reservations:
                 st.subheader("Vista Previa del Horario")
@@ -132,7 +166,6 @@ def admin_dashboard():
         st.header("Equipos Existentes")
         teams = get_all_teams(db)
 
-        # Display teams in a dataframe or simple list
         if teams:
             data = [{"ID": t.id, "Nombre": t.name, "Grupo": t.group_name} for t in teams]
             st.dataframe(pd.DataFrame(data))
@@ -143,7 +176,6 @@ def admin_dashboard():
         st.subheader("Crear Nuevo Equipo")
         with st.form("create_team_form"):
             new_team_name = st.text_input("Nombre del Equipo")
-            # Using strings for better display
             new_team_group_str = st.selectbox("Grupo", ["B", "D"])
 
             submitted = st.form_submit_button("Crear Equipo")
@@ -163,11 +195,9 @@ def admin_dashboard():
         st.header("Usuarios Registrados")
         users = get_all_users(db)
 
-        # Helper to get team name by ID
-        teams = get_all_teams(db) # Refresh teams list
+        teams = get_all_teams(db)
         teams_map = {t.id: t.name for t in teams}
 
-        # Translations
         role_translations = {
             "SUPERADMIN": "Administrador",
             "TEACHER": "Maestro",
@@ -176,7 +206,6 @@ def admin_dashboard():
             "TEAM_MEMBER": "Miembro de Equipo"
         }
 
-        # Prepare data for display
         user_data = []
         for u in users:
             role_val = u.role.value if hasattr(u.role, 'value') else str(u.role)
@@ -188,7 +217,7 @@ def admin_dashboard():
                 "Nombre Completo": u.full_name,
                 "Rol": role_disp,
                 "Equipo": teams_map.get(u.team_id, "Sin Asignar"),
-                "Grupo (Jefe)": u.group_name.value if u.group_name else "-"
+                "Grupo": u.group_name.value if u.group_name else "-"
             })
 
         st.dataframe(pd.DataFrame(user_data))
@@ -199,7 +228,6 @@ def admin_dashboard():
         if not users:
              st.info("No hay usuarios para editar.")
         else:
-            # Select user to edit
             user_options = {}
             for u in users:
                 label = f"{u.id}: {u.full_name} ({u.username})"
@@ -209,17 +237,14 @@ def admin_dashboard():
 
             if selected_user_label:
                 selected_user_id = user_options[selected_user_label]
-                # Find the user object again to be sure (or filter from list)
                 selected_user = next((u for u in users if u.id == selected_user_id), None)
 
                 if selected_user:
                     with st.form("edit_user_form"):
                         st.write(f"Editando a: **{selected_user.full_name}**")
 
-                        # Role Selection
                         role_options = [r.value for r in UserRole]
                         try:
-                            # Handle if role is Enum or string
                             current_role_val = selected_user.role.value if hasattr(selected_user.role, 'value') else str(selected_user.role)
                             current_role_index = role_options.index(current_role_val)
                         except ValueError:
@@ -232,21 +257,17 @@ def admin_dashboard():
                             format_func=lambda x: role_translations.get(x, x)
                         )
 
-                        # Team Selection
-                        # Prepare team options: "Ninguno" + list of teams
                         team_options_display = ["Ninguno"] + [f"{t.id}: {t.name}" for t in teams]
 
                         current_team_index = 0
                         if selected_user.team_id:
-                            # Find index
                             for i, t in enumerate(teams):
                                 if t.id == selected_user.team_id:
-                                    current_team_index = i + 1 # +1 because of "Ninguno"
+                                    current_team_index = i + 1
                                     break
 
                         new_team_label = st.selectbox("Equipo", team_options_display, index=current_team_index)
 
-                        # Group Name (Only for Group Chief)
                         group_options = ["Ninguno", "B", "D"]
                         current_group_index = 0
                         if selected_user.group_name:
@@ -256,12 +277,11 @@ def admin_dashboard():
                              elif val == "D":
                                  current_group_index = 2
 
-                        new_group_label = st.selectbox("Grupo (Solo para Jefes de Grupo)", group_options, index=current_group_index)
+                        new_group_label = st.selectbox("Grupo (Para Jefes de Grupo y Maestros)", group_options, index=current_group_index)
 
                         submitted_edit = st.form_submit_button("Actualizar Usuario")
 
                         if submitted_edit:
-                            # Parse team ID
                             new_team_id = None
                             if new_team_label != "Ninguno":
                                 try:
@@ -269,7 +289,6 @@ def admin_dashboard():
                                 except:
                                     pass
 
-                            # Parse Group
                             new_group = None
                             if new_group_label != "Ninguno":
                                 new_group = GroupName(new_group_label)

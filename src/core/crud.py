@@ -1,7 +1,10 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
-from core.models import User, Team, Availability, GroupBlock, Reservation, SystemSetting, UserRole, GroupName, ScheduleState
-from core.models import KEY_OPENING_HOUR, KEY_CLOSING_HOUR, KEY_MANUAL_MODE, KEY_SCHEDULE_STATUS
+from core.models import (
+    User, Team, Availability, GroupBlock, Reservation, SystemSetting,
+    RoboticsClassSchedule, UserRole, GroupName, ScheduleState,
+    KEY_FIRST_PERIOD, KEY_MANUAL_MODE, KEY_SCHEDULE_STATUS
+)
 import bcrypt
 from typing import List, Optional
 
@@ -90,15 +93,10 @@ def update_team(db: Session, team_id: int, name: str, group_name: GroupName):
 
 # --- Availability Management ---
 def set_user_availability(db: Session, user_id: int, slots: List[tuple]):
-    """
-    slots: List of (day_of_week, hour) tuples
-    """
-    # Clear existing availability
+    """slots: List of (day_of_week, period) tuples"""
     db.query(Availability).filter(Availability.user_id == user_id).delete()
-
-    # Add new
-    for day, hour in slots:
-        avail = Availability(user_id=user_id, day_of_week=day, hour=hour)
+    for day, period in slots:
+        avail = Availability(user_id=user_id, day_of_week=day, period=period)
         db.add(avail)
     db.commit()
 
@@ -106,28 +104,22 @@ def get_user_availability(db: Session, user_id: int):
     return db.query(Availability).filter(Availability.user_id == user_id).all()
 
 def get_team_availability(db: Session, team_id: int):
-    """Returns a dictionary mapping (day, hour) to count of available members."""
+    """Returns a dictionary mapping (day, period) to count of available members."""
     users = get_users_by_team(db, team_id)
     user_ids = [u.id for u in users]
-
     avails = db.query(Availability).filter(Availability.user_id.in_(user_ids)).all()
-
     counts = {}
     for a in avails:
-        key = (a.day_of_week, a.hour)
+        key = (a.day_of_week, a.period)
         counts[key] = counts.get(key, 0) + 1
     return counts, len(users)
 
 # --- Group Blocks (Theory Classes) ---
 def set_group_blocks(db: Session, group_name: GroupName, slots: List[tuple]):
-    """
-    slots: List of (day_of_week, hour) tuples
-    """
-    # Clear existing blocks for this group
+    """slots: List of (day_of_week, period) tuples"""
     db.query(GroupBlock).filter(GroupBlock.group_name == group_name).delete()
-
-    for day, hour in slots:
-        block = GroupBlock(group_name=group_name, day_of_week=day, hour=hour)
+    for day, period in slots:
+        block = GroupBlock(group_name=group_name, day_of_week=day, period=period)
         db.add(block)
     db.commit()
 
@@ -137,20 +129,46 @@ def get_group_blocks(db: Session, group_name: GroupName):
 def get_all_group_blocks(db: Session):
     return db.query(GroupBlock).all()
 
+# --- Robotics Class Schedule ---
+def set_robotics_class_schedule(db: Session, teacher_id: int, group_name: GroupName, slots: List[tuple]):
+    """slots: List of (day_of_week, period) tuples. Replaces all existing entries."""
+    db.query(RoboticsClassSchedule).filter(
+        RoboticsClassSchedule.teacher_id == teacher_id,
+        RoboticsClassSchedule.group_name == group_name
+    ).delete()
+    for day, period in slots:
+        entry = RoboticsClassSchedule(
+            teacher_id=teacher_id, group_name=group_name,
+            day_of_week=day, period=period
+        )
+        db.add(entry)
+    db.commit()
+
+def get_robotics_class_schedule_by_teacher(db: Session, teacher_id: int):
+    return db.query(RoboticsClassSchedule).filter(
+        RoboticsClassSchedule.teacher_id == teacher_id
+    ).all()
+
+def get_all_robotics_class_schedules(db: Session):
+    return db.query(RoboticsClassSchedule).all()
+
 # --- Reservations / Schedule ---
-def create_reservation(db: Session, team_id: int, day: int, hour: int, is_manual: bool):
-    # Check for conflict
-    existing = db.query(Reservation).filter_by(day_of_week=day, hour=hour).first()
+def create_reservation(db: Session, team_id, day: int, period: int, is_manual: bool,
+                       is_robotics_class: bool = False, group_name=None):
+    existing = db.query(Reservation).filter_by(day_of_week=day, period=period).first()
     if existing:
         raise ValueError("Slot already reserved")
-
-    res = Reservation(team_id=team_id, day_of_week=day, hour=hour, is_manual=is_manual)
+    res = Reservation(
+        team_id=team_id, day_of_week=day, period=period,
+        is_manual=is_manual, is_robotics_class=is_robotics_class,
+        group_name=group_name
+    )
     db.add(res)
     db.commit()
     return res
 
-def delete_reservation(db: Session, day: int, hour: int):
-    db.query(Reservation).filter_by(day_of_week=day, hour=hour).delete()
+def delete_reservation(db: Session, day: int, period: int):
+    db.query(Reservation).filter_by(day_of_week=day, period=period).delete()
     db.commit()
 
 def get_all_reservations(db: Session):
@@ -180,11 +198,8 @@ def set_system_setting(db: Session, key: str, value: str):
     db.commit()
 
 def init_system_settings(db: Session):
-    # Set defaults if not exist
-    if not get_system_setting(db, KEY_OPENING_HOUR):
-        set_system_setting(db, KEY_OPENING_HOUR, "7")
-    if not get_system_setting(db, KEY_CLOSING_HOUR):
-        set_system_setting(db, KEY_CLOSING_HOUR, "18")
+    if not get_system_setting(db, KEY_FIRST_PERIOD):
+        set_system_setting(db, KEY_FIRST_PERIOD, "1")
     if not get_system_setting(db, KEY_MANUAL_MODE):
         set_system_setting(db, KEY_MANUAL_MODE, "false")
     if not get_system_setting(db, KEY_SCHEDULE_STATUS):

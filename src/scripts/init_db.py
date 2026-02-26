@@ -1,6 +1,6 @@
 from core.database import engine, Base, SessionLocal
 import core.models as models
-from core.models import User, UserRole, GroupName, Team
+from core.models import User, UserRole, GroupName, Team, RoboticsClassSchedule
 from core.crud import create_user, create_team, init_system_settings
 
 def init_db():
@@ -17,13 +17,13 @@ def init_db():
     admin = db.query(User).filter(User.username == "admin").first()
     if not admin:
         print("Creating superadmin...")
-        create_user(db, "admin", "admin123", "Moya (Admin)", UserRole.SUPERADMIN)
+        create_user(db, "admin", "admin123", "Moya (Admin)", UserRole.SUPERADMIN, group_name=GroupName.B)
 
     # Check if teacher exists
     teacher = db.query(User).filter(User.username == "teacher").first()
     if not teacher:
         print("Creating teacher...")
-        create_user(db, "teacher", "teacher123", "Cantero (Teacher)", UserRole.TEACHER)
+        create_user(db, "teacher", "teacher123", "Cantero (Teacher)", UserRole.TEACHER, group_name=GroupName.D)
 
     # Check if group chiefs exist
     chief_b = db.query(User).filter(User.username == "chief_b").first()

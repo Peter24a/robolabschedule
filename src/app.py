@@ -14,6 +14,7 @@ from ui.student_dashboard import student_dashboard
 from ui.calendar_view import calendar_view
 from ui.team_leader_dashboard import team_leader_dashboard
 from ui.group_chief_dashboard import group_chief_dashboard
+from ui.teacher_dashboard import teacher_dashboard
 
 def main():
     st.set_page_config(page_title="Sistema de Gestión de Laboratorio de Robótica", layout="wide")
@@ -60,8 +61,7 @@ def main():
         if role == "SUPERADMIN":
             admin_dashboard()
         elif role == "TEACHER":
-            st.title("Calendario Maestro")
-            calendar_view()
+            teacher_dashboard()
         elif role == "GROUP_CHIEF":
             group_chief_dashboard()
         elif role == "TEAM_LEADER":
