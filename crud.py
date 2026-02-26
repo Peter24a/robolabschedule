@@ -36,6 +36,19 @@ def create_user(db: Session, username, password, full_name, role, team_id=None, 
 def get_users_by_team(db: Session, team_id: int):
     return db.query(User).filter(User.team_id == team_id).all()
 
+def get_all_users(db: Session):
+    return db.query(User).all()
+
+def update_user_role_and_team(db: Session, user_id: int, role: UserRole, team_id: int = None, group_name: GroupName = None):
+    user = db.query(User).filter(User.id == user_id).first()
+    if user:
+        user.role = role
+        user.team_id = team_id
+        user.group_name = group_name
+        db.commit()
+        db.refresh(user)
+    return user
+
 # --- Team Management ---
 def create_team(db: Session, name: str, group_name: GroupName):
     db_team = Team(name=name, group_name=group_name)
@@ -65,6 +78,15 @@ def unlock_team_availability(db: Session, team_id: int):
         db.commit()
         return True
     return False
+
+def update_team(db: Session, team_id: int, name: str, group_name: GroupName):
+    team = db.query(Team).filter(Team.id == team_id).first()
+    if team:
+        team.name = name
+        team.group_name = group_name
+        db.commit()
+        db.refresh(team)
+    return team
 
 # --- Availability Management ---
 def set_user_availability(db: Session, user_id: int, slots: List[tuple]):
