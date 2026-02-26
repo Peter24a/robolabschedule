@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest
+.pytest_cache/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Database
+*.db
+*.sqlite3
+robotics_lab.db
+
+# Docker
+docker-compose.override.yml
+.docker-compose.env
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# VS Code / Streamlit
+.streamlit/
+
+# General caches and logs
+*.log
+*.bak
+*.tmp
