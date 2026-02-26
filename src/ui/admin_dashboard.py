@@ -13,6 +13,7 @@ from core.models import (
     ScheduleState, UserRole, GroupName
 )
 from ui.components import schedule_grid, availability_grid
+from core.backup import trigger_backup, export_db_to_json, load_backup_from_github, import_db_from_json
 import pandas as pd
 
 def admin_dashboard():
@@ -21,7 +22,7 @@ def admin_dashboard():
 
     db = next(get_db())
 
-    tab1, tab2, tab3 = st.tabs(["Gestión de Horarios", "Gestión de Equipos", "Gestión de Usuarios"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Gestión de Horarios", "Gestión de Equipos", "Gestión de Usuarios", "Backup / Restaurar"])
 
     # --- TAB 1: Gestión de Horarios ---
     with tab1:
@@ -305,3 +306,39 @@ def admin_dashboard():
                                 st.rerun()
                             except Exception as e:
                                 st.error(f"Error al actualizar usuario: {str(e)}")
+
+    # --- TAB 4: Backup / Restaurar ---
+    with tab4:
+        st.header("Backup y Restauración")
+        st.write("Guarda los datos en GitHub para que persistan cuando la app se duerma en Streamlit Cloud.")
+
+        col_bk, col_rs = st.columns(2)
+
+        with col_bk:
+            st.subheader("Guardar Backup")
+            if st.button("Guardar Backup en GitHub", type="primary"):
+                with st.spinner("Guardando backup..."):
+                    msg = trigger_backup(db)
+                st.info(msg)
+
+        with col_rs:
+            st.subheader("Restaurar Backup")
+            if st.button("Restaurar desde GitHub"):
+                with st.spinner("Descargando backup..."):
+                    data = load_backup_from_github()
+                if data and data.get("users"):
+                    import_db_from_json(db, data)
+                    st.success("Base de datos restaurada exitosamente.")
+                    st.rerun()
+                else:
+                    st.warning("No se encontró backup en GitHub o está vacío.")
+
+        st.divider()
+        st.subheader("Vista previa de datos actuales")
+        data_export = export_db_to_json(db)
+        st.write(f"**Usuarios:** {len(data_export.get('users', []))} | "
+                 f"**Equipos:** {len(data_export.get('teams', []))} | "
+                 f"**Disponibilidades:** {len(data_export.get('availabilities', []))} | "
+                 f"**Reservaciones:** {len(data_export.get('reservations', []))}")
+        with st.expander("Ver JSON completo"):
+            st.json(data_export)

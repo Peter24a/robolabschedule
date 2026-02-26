@@ -4,3 +4,4 @@ passlib
 bcrypt
 numpy
 pandas
+requests

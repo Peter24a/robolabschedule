@@ -1,8 +1,9 @@
 import streamlit as st
 import sys
 import os
-from core.database import get_db
+from core.database import get_db, engine, Base, SessionLocal
 from core.crud import get_user_by_username, verify_password
+from core.backup import auto_restore_if_empty
 
 # Ensure project root is in path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -16,8 +17,22 @@ from ui.team_leader_dashboard import team_leader_dashboard
 from ui.group_chief_dashboard import group_chief_dashboard
 from ui.teacher_dashboard import teacher_dashboard
 
+def _init_and_restore():
+    """Crea tablas y restaura backup de GitHub si la BD está vacía."""
+    Base.metadata.create_all(bind=engine)
+    db = SessionLocal()
+    try:
+        msg = auto_restore_if_empty(db)
+        if msg:
+            st.toast(msg, icon="\u2705")
+    finally:
+        db.close()
+
+
 def main():
     st.set_page_config(page_title="Sistema de Gestión de Laboratorio de Robótica", layout="wide")
+
+    _init_and_restore()
 
     if "user" not in st.session_state:
         st.session_state["user"] = None
