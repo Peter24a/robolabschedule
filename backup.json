@@ -1,0 +1,1628 @@
+{
+  "teams": [
+    {
+      "id": 1,
+      "name": "Team Alpha (B)",
+      "group_name": "B",
+      "is_locked": false
+    },
+    {
+      "id": 2,
+      "name": "Team Beta (D)",
+      "group_name": "D",
+      "is_locked": false
+    },
+    {
+      "id": 3,
+      "name": "Equipo_4",
+      "group_name": "D",
+      "is_locked": false
+    },
+    {
+      "id": 4,
+      "name": "Equipo_2",
+      "group_name": "D",
+      "is_locked": false
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password_hash": "$2b$12$GifUZ0tdjalBmV8BN2J47uJCy/X2OyMWnyWGOI24oeSfBLWj.dnde",
+      "full_name": "Moya (Admin)",
+      "role": "SUPERADMIN",
+      "team_id": null,
+      "group_name": "B"
+    },
+    {
+      "id": 2,
+      "username": "teacher",
+      "password_hash": "$2b$12$.9vvf.shGyG/PsCiCOJmgez01P4IW6K8YIB6VB.o0lA/ZsbW1t1IW",
+      "full_name": "Cantero (Teacher)",
+      "role": "TEACHER",
+      "team_id": null,
+      "group_name": "D"
+    },
+    {
+      "id": 3,
+      "username": "chief_b",
+      "password_hash": "$2b$12$8F2AbPhWNVPpuIISWRZrg.529ZloMfxOw6SX34d5wZ3kQA9s/IdaO",
+      "full_name": "Jefe Grupo B",
+      "role": "GROUP_CHIEF",
+      "team_id": null,
+      "group_name": "B"
+    },
+    {
+      "id": 4,
+      "username": "chief_d",
+      "password_hash": "$2b$12$30L8m5PhWXuOn2kO78j8R.tUoC.Zpd5M1JC0dpuNQYYFohq6U.wy6",
+      "full_name": "Jefe Grupo D",
+      "role": "GROUP_CHIEF",
+      "team_id": null,
+      "group_name": "D"
+    },
+    {
+      "id": 5,
+      "username": "leader_alpha",
+      "password_hash": "$2b$12$fDpiyYkra6Qu51hCt9hpiONx6Rz3HQjOn1krJpf721TWuNOjggDiG",
+      "full_name": "Leader Alpha",
+      "role": "TEAM_LEADER",
+      "team_id": 1,
+      "group_name": null
+    },
+    {
+      "id": 6,
+      "username": "student1",
+      "password_hash": "$2b$12$eoqcz63oU32ae7QVCPzTGuOEEavNfvHx0WqUaNhNCQDbj5Nbuz00K",
+      "full_name": "Student 1",
+      "role": "TEAM_MEMBER",
+      "team_id": 1,
+      "group_name": null
+    },
+    {
+      "id": 7,
+      "username": "student2",
+      "password_hash": "$2b$12$zndI16Dr0nlK.e..aFfNXeoclHSgauk5DoX2YxLulZH4Dwx5CgrM6",
+      "full_name": "Student 2",
+      "role": "TEAM_MEMBER",
+      "team_id": 1,
+      "group_name": null
+    },
+    {
+      "id": 8,
+      "username": "leader_beta",
+      "password_hash": "$2b$12$Q20GvJImylTWNryUzza4heFEz2lub..EksJUbscrTDiJVF/bObi32",
+      "full_name": "Leader Beta",
+      "role": "TEAM_LEADER",
+      "team_id": 2,
+      "group_name": null
+    },
+    {
+      "id": 9,
+      "username": "student3",
+      "password_hash": "$2b$12$Xtrc383hTySxp6oGV.EBV./BWGU9/3nGHOW1SgEcVH9lmjKBiX8oa",
+      "full_name": "Student 3",
+      "role": "TEAM_MEMBER",
+      "team_id": 2,
+      "group_name": null
+    },
+    {
+      "id": 10,
+      "username": "student4",
+      "password_hash": "$2b$12$JNMXPfR4PT/mqv5DZu2H5uD5ss5gxp1SRXY6gcN.3NVEwvRVJMJLq",
+      "full_name": "Student 4",
+      "role": "TEAM_MEMBER",
+      "team_id": 2,
+      "group_name": null
+    },
+    {
+      "id": 11,
+      "username": "Pedro",
+      "password_hash": "$2b$12$JkELBxhu.YE3VgbtAUraAu.FTw4X9.7EBZ0Ma2pwVM1Hysw5CGOgO",
+      "full_name": "Pedro Antonio Ibarra Facio",
+      "role": "TEAM_MEMBER",
+      "team_id": 3,
+      "group_name": "D"
+    },
+    {
+      "id": 12,
+      "username": "Juan Pablo R. G. ",
+      "password_hash": "$2b$12$KTj8xmvzucMf/sKIz2MVQ.Ex25bPjy9oDdWYQNEPwJA7N5aTtH03y",
+      "full_name": "Juan Pablo Rodriguez Garcia",
+      "role": "TEAM_MEMBER",
+      "team_id": null,
+      "group_name": null
+    },
+    {
+      "id": 13,
+      "username": "AlejandroLH",
+      "password_hash": "$2b$12$KctfHcM5UFlIHWixvrQss.woRb9GG.XBXcwHZkHuu/Bv7vfdrnVOi",
+      "full_name": "Jahir Alejandro Lopez",
+      "role": "TEAM_MEMBER",
+      "team_id": null,
+      "group_name": null
+    },
+    {
+      "id": 14,
+      "username": "Daniel M. Ramirez",
+      "password_hash": "$2b$12$PakTeDVGPE1DIOjRqTbg0OeMCR9Ef1Je26g8bHRK7F17DoirGlO6O",
+      "full_name": "Cesar Daniel Morales Ramirez",
+      "role": "TEAM_MEMBER",
+      "team_id": null,
+      "group_name": null
+    },
+    {
+      "id": 15,
+      "username": "soficeja",
+      "password_hash": "$2b$12$hahhqt.8LytpGH.9/.RaweRXBHDZd2uU5PbHH7rzvWFJ13f2Hwcom",
+      "full_name": "Karla Sofía Jiménez Ceja ",
+      "role": "TEAM_MEMBER",
+      "team_id": null,
+      "group_name": null
+    },
+    {
+      "id": 16,
+      "username": "Yohana Ornelas",
+      "password_hash": "$2b$12$/F5pZUjQGncf0y7B41fTl.N3t63zWHREfR2qJy/PS/2vEP8GhgFfu",
+      "full_name": "Yohana Yamille Ornelas Ochoa",
+      "role": "TEAM_MEMBER",
+      "team_id": 3,
+      "group_name": "D"
+    },
+    {
+      "id": 17,
+      "username": "Rojas",
+      "password_hash": "$2b$12$KImoMBJuzURNmRnKM97NleajX6lmNif3m5galvKfNaQVg.8yzbz3i",
+      "full_name": "Isaac Antonio Rojas Gutiérrez ",
+      "role": "TEAM_MEMBER",
+      "team_id": 4,
+      "group_name": "D"
+    },
+    {
+      "id": 18,
+      "username": "César  jauregui",
+      "password_hash": "$2b$12$l2BjPnwjQU.DWV9ZwArgjekzYCUrTf3i2AJblnSjjSo5HATjBhEq6",
+      "full_name": "César Gabriel Jauregui Flores ",
+      "role": "TEAM_MEMBER",
+      "team_id": 4,
+      "group_name": "D"
+    },
+    {
+      "id": 19,
+      "username": "Rojas 2",
+      "password_hash": "$2b$12$n1D7VU9ZKyhkawTvbAFTTez6MAxkQdN4S0vLEwmaSmkambe07Jfz.",
+      "full_name": "Isaac Antonio Rojas Gutiérrez ",
+      "role": "TEAM_MEMBER",
+      "team_id": null,
+      "group_name": null
+    },
+    {
+      "id": 20,
+      "username": "Danteglez",
+      "password_hash": "$2b$12$hZwBN6K/Ni2.BrwVPEeld.8Ywo6a6C/HoFIAG2c7FmyKujUaYt0H6",
+      "full_name": "Dante Heriberto González González ",
+      "role": "TEAM_MEMBER",
+      "team_id": 4,
+      "group_name": "D"
+    },
+    {
+      "id": 21,
+      "username": "Cachorrita69",
+      "password_hash": "$2b$12$xX6fHLUG3Ds5NSeu6QThauV3Bz5gcgjUZ8BjZhHbZlwpgjgyVO7SG",
+      "full_name": "Leonardo Gael Ramos Pimienta",
+      "role": "TEAM_MEMBER",
+      "team_id": 4,
+      "group_name": "D"
+    },
+    {
+      "id": 22,
+      "username": "Alejandro AR ",
+      "password_hash": "$2b$12$WIvRPeucK.N9R3Bt.liol.BOP4Dtj8..lX9rkvJokUVAdkPxSG4MC",
+      "full_name": "Jesús Alejandro Andrade Romero",
+      "role": "TEAM_MEMBER",
+      "team_id": null,
+      "group_name": null
+    },
+    {
+      "id": 23,
+      "username": "Cesar jauregui",
+      "password_hash": "$2b$12$3TLZDQuEaBum9ES/U549P.vYnNDBg7zpS0k424ix6nn2GWO034Rk2",
+      "full_name": "César Gabriel Jauregui Flores",
+      "role": "TEAM_MEMBER",
+      "team_id": null,
+      "group_name": null
+    },
+    {
+      "id": 24,
+      "username": "kenya8",
+      "password_hash": "$2b$12$kMyPjhMid5DUmXxguHTq3ucBS9pfHk5CUIfy2oI4dnB/4oE3oAHke",
+      "full_name": "Kenya Alexandra Ramos Valadez",
+      "role": "TEAM_MEMBER",
+      "team_id": 3,
+      "group_name": "D"
+    },
+    {
+      "id": 25,
+      "username": "Rodrigo",
+      "password_hash": "$2b$12$wm0db644R5zkVhTRjXPfvO4g0G2lN/h33DVS5rEa0CuKfqem7d1Y2",
+      "full_name": "Rodrigo Karin Castro Serrano ",
+      "role": "TEAM_MEMBER",
+      "team_id": null,
+      "group_name": null
+    },
+    {
+      "id": 26,
+      "username": "Tito",
+      "password_hash": "$2b$12$1xL/3wybLJ6yNH2WV8kN4OlrWYDnpnHZvboeZkkrmaFakJpLfydfq",
+      "full_name": "Ángel Roberto Rodríguez Miranda ",
+      "role": "TEAM_MEMBER",
+      "team_id": null,
+      "group_name": null
+    }
+  ],
+  "availabilities": [
+    {
+      "id": 1,
+      "user_id": 13,
+      "day_of_week": 0,
+      "period": 7
+    },
+    {
+      "id": 2,
+      "user_id": 13,
+      "day_of_week": 0,
+      "period": 8
+    },
+    {
+      "id": 3,
+      "user_id": 13,
+      "day_of_week": 0,
+      "period": 9
+    },
+    {
+      "id": 4,
+      "user_id": 13,
+      "day_of_week": 0,
+      "period": 10
+    },
+    {
+      "id": 5,
+      "user_id": 13,
+      "day_of_week": 0,
+      "period": 11
+    },
+    {
+      "id": 6,
+      "user_id": 13,
+      "day_of_week": 0,
+      "period": 12
+    },
+    {
+      "id": 7,
+      "user_id": 13,
+      "day_of_week": 0,
+      "period": 13
+    },
+    {
+      "id": 8,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 1
+    },
+    {
+      "id": 9,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 2
+    },
+    {
+      "id": 10,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 3
+    },
+    {
+      "id": 11,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 4
+    },
+    {
+      "id": 12,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 5
+    },
+    {
+      "id": 13,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 6
+    },
+    {
+      "id": 14,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 7
+    },
+    {
+      "id": 15,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 8
+    },
+    {
+      "id": 16,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 9
+    },
+    {
+      "id": 17,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 10
+    },
+    {
+      "id": 18,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 11
+    },
+    {
+      "id": 19,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 12
+    },
+    {
+      "id": 20,
+      "user_id": 13,
+      "day_of_week": 1,
+      "period": 13
+    },
+    {
+      "id": 41,
+      "user_id": 23,
+      "day_of_week": 0,
+      "period": 2
+    },
+    {
+      "id": 42,
+      "user_id": 23,
+      "day_of_week": 0,
+      "period": 3
+    },
+    {
+      "id": 47,
+      "user_id": 21,
+      "day_of_week": 0,
+      "period": 2
+    },
+    {
+      "id": 48,
+      "user_id": 21,
+      "day_of_week": 0,
+      "period": 3
+    },
+    {
+      "id": 53,
+      "user_id": 19,
+      "day_of_week": 0,
+      "period": 2
+    },
+    {
+      "id": 54,
+      "user_id": 19,
+      "day_of_week": 0,
+      "period": 3
+    },
+    {
+      "id": 55,
+      "user_id": 20,
+      "day_of_week": 0,
+      "period": 2
+    },
+    {
+      "id": 56,
+      "user_id": 20,
+      "day_of_week": 0,
+      "period": 3
+    },
+    {
+      "id": 57,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 1
+    },
+    {
+      "id": 58,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 2
+    },
+    {
+      "id": 59,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 3
+    },
+    {
+      "id": 60,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 4
+    },
+    {
+      "id": 61,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 5
+    },
+    {
+      "id": 62,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 6
+    },
+    {
+      "id": 63,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 7
+    },
+    {
+      "id": 64,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 8
+    },
+    {
+      "id": 65,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 9
+    },
+    {
+      "id": 66,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 10
+    },
+    {
+      "id": 67,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 11
+    },
+    {
+      "id": 68,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 12
+    },
+    {
+      "id": 69,
+      "user_id": 22,
+      "day_of_week": 0,
+      "period": 13
+    },
+    {
+      "id": 70,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 1
+    },
+    {
+      "id": 71,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 2
+    },
+    {
+      "id": 72,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 3
+    },
+    {
+      "id": 73,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 4
+    },
+    {
+      "id": 74,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 5
+    },
+    {
+      "id": 75,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 6
+    },
+    {
+      "id": 76,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 7
+    },
+    {
+      "id": 77,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 8
+    },
+    {
+      "id": 78,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 9
+    },
+    {
+      "id": 79,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 10
+    },
+    {
+      "id": 80,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 11
+    },
+    {
+      "id": 81,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 12
+    },
+    {
+      "id": 82,
+      "user_id": 22,
+      "day_of_week": 1,
+      "period": 13
+    },
+    {
+      "id": 83,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 1
+    },
+    {
+      "id": 84,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 2
+    },
+    {
+      "id": 85,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 3
+    },
+    {
+      "id": 86,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 4
+    },
+    {
+      "id": 87,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 5
+    },
+    {
+      "id": 88,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 6
+    },
+    {
+      "id": 89,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 7
+    },
+    {
+      "id": 90,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 8
+    },
+    {
+      "id": 91,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 9
+    },
+    {
+      "id": 92,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 10
+    },
+    {
+      "id": 93,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 11
+    },
+    {
+      "id": 94,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 12
+    },
+    {
+      "id": 95,
+      "user_id": 22,
+      "day_of_week": 2,
+      "period": 13
+    },
+    {
+      "id": 96,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 1
+    },
+    {
+      "id": 97,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 2
+    },
+    {
+      "id": 98,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 3
+    },
+    {
+      "id": 99,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 4
+    },
+    {
+      "id": 100,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 5
+    },
+    {
+      "id": 101,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 6
+    },
+    {
+      "id": 102,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 7
+    },
+    {
+      "id": 103,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 8
+    },
+    {
+      "id": 104,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 9
+    },
+    {
+      "id": 105,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 10
+    },
+    {
+      "id": 106,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 11
+    },
+    {
+      "id": 107,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 12
+    },
+    {
+      "id": 108,
+      "user_id": 22,
+      "day_of_week": 3,
+      "period": 13
+    },
+    {
+      "id": 109,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 1
+    },
+    {
+      "id": 110,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 2
+    },
+    {
+      "id": 111,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 3
+    },
+    {
+      "id": 112,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 4
+    },
+    {
+      "id": 113,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 5
+    },
+    {
+      "id": 114,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 6
+    },
+    {
+      "id": 115,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 7
+    },
+    {
+      "id": 116,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 8
+    },
+    {
+      "id": 117,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 9
+    },
+    {
+      "id": 118,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 10
+    },
+    {
+      "id": 119,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 11
+    },
+    {
+      "id": 120,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 12
+    },
+    {
+      "id": 121,
+      "user_id": 22,
+      "day_of_week": 4,
+      "period": 13
+    },
+    {
+      "id": 122,
+      "user_id": 16,
+      "day_of_week": 0,
+      "period": 1
+    },
+    {
+      "id": 123,
+      "user_id": 16,
+      "day_of_week": 0,
+      "period": 2
+    },
+    {
+      "id": 124,
+      "user_id": 16,
+      "day_of_week": 0,
+      "period": 3
+    },
+    {
+      "id": 125,
+      "user_id": 16,
+      "day_of_week": 0,
+      "period": 9
+    },
+    {
+      "id": 126,
+      "user_id": 16,
+      "day_of_week": 0,
+      "period": 10
+    },
+    {
+      "id": 127,
+      "user_id": 16,
+      "day_of_week": 0,
+      "period": 11
+    },
+    {
+      "id": 128,
+      "user_id": 16,
+      "day_of_week": 0,
+      "period": 12
+    },
+    {
+      "id": 129,
+      "user_id": 16,
+      "day_of_week": 0,
+      "period": 13
+    },
+    {
+      "id": 130,
+      "user_id": 16,
+      "day_of_week": 1,
+      "period": 1
+    },
+    {
+      "id": 131,
+      "user_id": 16,
+      "day_of_week": 1,
+      "period": 2
+    },
+    {
+      "id": 132,
+      "user_id": 16,
+      "day_of_week": 1,
+      "period": 3
+    },
+    {
+      "id": 133,
+      "user_id": 16,
+      "day_of_week": 1,
+      "period": 4
+    },
+    {
+      "id": 134,
+      "user_id": 16,
+      "day_of_week": 1,
+      "period": 5
+    },
+    {
+      "id": 135,
+      "user_id": 16,
+      "day_of_week": 1,
+      "period": 6
+    },
+    {
+      "id": 136,
+      "user_id": 16,
+      "day_of_week": 2,
+      "period": 1
+    },
+    {
+      "id": 137,
+      "user_id": 16,
+      "day_of_week": 2,
+      "period": 2
+    },
+    {
+      "id": 138,
+      "user_id": 16,
+      "day_of_week": 2,
+      "period": 3
+    },
+    {
+      "id": 139,
+      "user_id": 16,
+      "day_of_week": 2,
+      "period": 10
+    },
+    {
+      "id": 140,
+      "user_id": 16,
+      "day_of_week": 2,
+      "period": 11
+    },
+    {
+      "id": 141,
+      "user_id": 16,
+      "day_of_week": 2,
+      "period": 12
+    },
+    {
+      "id": 142,
+      "user_id": 16,
+      "day_of_week": 2,
+      "period": 13
+    },
+    {
+      "id": 143,
+      "user_id": 16,
+      "day_of_week": 3,
+      "period": 10
+    },
+    {
+      "id": 144,
+      "user_id": 16,
+      "day_of_week": 3,
+      "period": 11
+    },
+    {
+      "id": 145,
+      "user_id": 16,
+      "day_of_week": 3,
+      "period": 12
+    },
+    {
+      "id": 146,
+      "user_id": 16,
+      "day_of_week": 3,
+      "period": 13
+    },
+    {
+      "id": 147,
+      "user_id": 24,
+      "day_of_week": 0,
+      "period": 3
+    },
+    {
+      "id": 148,
+      "user_id": 24,
+      "day_of_week": 0,
+      "period": 4
+    },
+    {
+      "id": 149,
+      "user_id": 24,
+      "day_of_week": 0,
+      "period": 5
+    },
+    {
+      "id": 150,
+      "user_id": 24,
+      "day_of_week": 0,
+      "period": 6
+    },
+    {
+      "id": 151,
+      "user_id": 24,
+      "day_of_week": 0,
+      "period": 7
+    },
+    {
+      "id": 152,
+      "user_id": 24,
+      "day_of_week": 0,
+      "period": 8
+    },
+    {
+      "id": 153,
+      "user_id": 24,
+      "day_of_week": 1,
+      "period": 3
+    },
+    {
+      "id": 154,
+      "user_id": 24,
+      "day_of_week": 1,
+      "period": 4
+    },
+    {
+      "id": 155,
+      "user_id": 24,
+      "day_of_week": 1,
+      "period": 5
+    },
+    {
+      "id": 156,
+      "user_id": 24,
+      "day_of_week": 1,
+      "period": 6
+    },
+    {
+      "id": 157,
+      "user_id": 24,
+      "day_of_week": 2,
+      "period": 3
+    },
+    {
+      "id": 158,
+      "user_id": 24,
+      "day_of_week": 2,
+      "period": 4
+    },
+    {
+      "id": 159,
+      "user_id": 24,
+      "day_of_week": 2,
+      "period": 5
+    },
+    {
+      "id": 160,
+      "user_id": 24,
+      "day_of_week": 2,
+      "period": 6
+    },
+    {
+      "id": 161,
+      "user_id": 24,
+      "day_of_week": 2,
+      "period": 7
+    },
+    {
+      "id": 162,
+      "user_id": 24,
+      "day_of_week": 2,
+      "period": 8
+    },
+    {
+      "id": 163,
+      "user_id": 24,
+      "day_of_week": 2,
+      "period": 9
+    },
+    {
+      "id": 164,
+      "user_id": 24,
+      "day_of_week": 3,
+      "period": 1
+    },
+    {
+      "id": 165,
+      "user_id": 24,
+      "day_of_week": 3,
+      "period": 2
+    },
+    {
+      "id": 166,
+      "user_id": 24,
+      "day_of_week": 3,
+      "period": 3
+    },
+    {
+      "id": 167,
+      "user_id": 24,
+      "day_of_week": 3,
+      "period": 4
+    },
+    {
+      "id": 168,
+      "user_id": 24,
+      "day_of_week": 3,
+      "period": 5
+    },
+    {
+      "id": 169,
+      "user_id": 24,
+      "day_of_week": 3,
+      "period": 6
+    },
+    {
+      "id": 170,
+      "user_id": 24,
+      "day_of_week": 3,
+      "period": 7
+    },
+    {
+      "id": 171,
+      "user_id": 24,
+      "day_of_week": 3,
+      "period": 8
+    },
+    {
+      "id": 172,
+      "user_id": 24,
+      "day_of_week": 4,
+      "period": 1
+    },
+    {
+      "id": 173,
+      "user_id": 24,
+      "day_of_week": 4,
+      "period": 2
+    },
+    {
+      "id": 174,
+      "user_id": 24,
+      "day_of_week": 4,
+      "period": 3
+    },
+    {
+      "id": 175,
+      "user_id": 24,
+      "day_of_week": 4,
+      "period": 4
+    },
+    {
+      "id": 176,
+      "user_id": 24,
+      "day_of_week": 4,
+      "period": 5
+    },
+    {
+      "id": 177,
+      "user_id": 24,
+      "day_of_week": 4,
+      "period": 6
+    },
+    {
+      "id": 178,
+      "user_id": 26,
+      "day_of_week": 0,
+      "period": 1
+    },
+    {
+      "id": 179,
+      "user_id": 26,
+      "day_of_week": 0,
+      "period": 2
+    },
+    {
+      "id": 180,
+      "user_id": 26,
+      "day_of_week": 0,
+      "period": 3
+    },
+    {
+      "id": 181,
+      "user_id": 26,
+      "day_of_week": 0,
+      "period": 9
+    },
+    {
+      "id": 182,
+      "user_id": 26,
+      "day_of_week": 0,
+      "period": 10
+    },
+    {
+      "id": 183,
+      "user_id": 26,
+      "day_of_week": 0,
+      "period": 11
+    },
+    {
+      "id": 184,
+      "user_id": 26,
+      "day_of_week": 0,
+      "period": 12
+    },
+    {
+      "id": 185,
+      "user_id": 26,
+      "day_of_week": 0,
+      "period": 13
+    },
+    {
+      "id": 186,
+      "user_id": 26,
+      "day_of_week": 2,
+      "period": 1
+    },
+    {
+      "id": 187,
+      "user_id": 26,
+      "day_of_week": 2,
+      "period": 2
+    },
+    {
+      "id": 188,
+      "user_id": 26,
+      "day_of_week": 2,
+      "period": 3
+    },
+    {
+      "id": 189,
+      "user_id": 26,
+      "day_of_week": 2,
+      "period": 10
+    },
+    {
+      "id": 190,
+      "user_id": 26,
+      "day_of_week": 2,
+      "period": 11
+    },
+    {
+      "id": 191,
+      "user_id": 26,
+      "day_of_week": 2,
+      "period": 12
+    },
+    {
+      "id": 192,
+      "user_id": 26,
+      "day_of_week": 2,
+      "period": 13
+    },
+    {
+      "id": 193,
+      "user_id": 26,
+      "day_of_week": 3,
+      "period": 9
+    },
+    {
+      "id": 194,
+      "user_id": 26,
+      "day_of_week": 3,
+      "period": 10
+    },
+    {
+      "id": 195,
+      "user_id": 26,
+      "day_of_week": 3,
+      "period": 11
+    },
+    {
+      "id": 196,
+      "user_id": 26,
+      "day_of_week": 3,
+      "period": 12
+    }
+  ],
+  "group_blocks": [
+    {
+      "id": 1,
+      "group_name": "D",
+      "day_of_week": 0,
+      "period": 4
+    },
+    {
+      "id": 2,
+      "group_name": "D",
+      "day_of_week": 0,
+      "period": 5
+    },
+    {
+      "id": 3,
+      "group_name": "D",
+      "day_of_week": 0,
+      "period": 6
+    },
+    {
+      "id": 4,
+      "group_name": "D",
+      "day_of_week": 0,
+      "period": 7
+    },
+    {
+      "id": 5,
+      "group_name": "D",
+      "day_of_week": 0,
+      "period": 8
+    },
+    {
+      "id": 6,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 4
+    },
+    {
+      "id": 7,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 5
+    },
+    {
+      "id": 8,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 6
+    },
+    {
+      "id": 9,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 7
+    },
+    {
+      "id": 10,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 8
+    },
+    {
+      "id": 11,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 2
+    },
+    {
+      "id": 12,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 3
+    },
+    {
+      "id": 13,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 4
+    },
+    {
+      "id": 14,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 5
+    },
+    {
+      "id": 15,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 6
+    },
+    {
+      "id": 16,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 7
+    },
+    {
+      "id": 17,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 8
+    },
+    {
+      "id": 18,
+      "group_name": "D",
+      "day_of_week": 4,
+      "period": 1
+    },
+    {
+      "id": 19,
+      "group_name": "D",
+      "day_of_week": 4,
+      "period": 2
+    },
+    {
+      "id": 20,
+      "group_name": "D",
+      "day_of_week": 4,
+      "period": 3
+    },
+    {
+      "id": 21,
+      "group_name": "D",
+      "day_of_week": 4,
+      "period": 4
+    },
+    {
+      "id": 22,
+      "group_name": "D",
+      "day_of_week": 4,
+      "period": 5
+    }
+  ],
+  "robotics_class_schedule": [
+    {
+      "id": 11,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 7
+    },
+    {
+      "id": 12,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 8
+    },
+    {
+      "id": 13,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 9
+    },
+    {
+      "id": 14,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 10
+    },
+    {
+      "id": 15,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 11
+    },
+    {
+      "id": 16,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 12
+    },
+    {
+      "id": 17,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 2,
+      "period": 13
+    },
+    {
+      "id": 18,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 7
+    },
+    {
+      "id": 19,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 8
+    },
+    {
+      "id": 20,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 9
+    },
+    {
+      "id": 21,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 10
+    },
+    {
+      "id": 22,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 11
+    },
+    {
+      "id": 23,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 12
+    },
+    {
+      "id": 24,
+      "teacher_id": 2,
+      "group_name": "D",
+      "day_of_week": 3,
+      "period": 13
+    },
+    {
+      "id": 25,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 1
+    },
+    {
+      "id": 26,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 2
+    },
+    {
+      "id": 27,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 3
+    },
+    {
+      "id": 28,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 4
+    },
+    {
+      "id": 29,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 5
+    },
+    {
+      "id": 30,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 6
+    },
+    {
+      "id": 31,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 7
+    },
+    {
+      "id": 32,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 8
+    },
+    {
+      "id": 33,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 9
+    },
+    {
+      "id": 34,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 10
+    },
+    {
+      "id": 35,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 11
+    },
+    {
+      "id": 36,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 12
+    },
+    {
+      "id": 37,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 1,
+      "period": 13
+    },
+    {
+      "id": 38,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 4,
+      "period": 5
+    },
+    {
+      "id": 39,
+      "teacher_id": 1,
+      "group_name": "B",
+      "day_of_week": 4,
+      "period": 6
+    }
+  ],
+  "reservations": [],
+  "system_settings": [
+    {
+      "key": "first_period",
+      "value": "3"
+    },
+    {
+      "key": "manual_mode",
+      "value": "false"
+    },
+    {
+      "key": "schedule_status",
+      "value": "NONE"
+    }
+  ]
+}
