@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
-from models import User, Team, Availability, GroupBlock, Reservation, SystemSetting, UserRole, GroupName, ScheduleState
-from models import KEY_OPENING_HOUR, KEY_CLOSING_HOUR, KEY_MANUAL_MODE, KEY_SCHEDULE_STATUS
+from core.models import User, Team, Availability, GroupBlock, Reservation, SystemSetting, UserRole, GroupName, ScheduleState
+from core.models import KEY_OPENING_HOUR, KEY_CLOSING_HOUR, KEY_MANUAL_MODE, KEY_SCHEDULE_STATUS
 import bcrypt
 from typing import List, Optional
 

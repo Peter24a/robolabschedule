@@ -1,6 +1,6 @@
 import streamlit as st
-from crud import get_user_by_username, verify_password
-from database import get_db
+from core.crud import get_user_by_username, verify_password
+from core.database import get_db
 
 def login_page():
     st.title("Sistema de Gestión de Laboratorio de Robótica")

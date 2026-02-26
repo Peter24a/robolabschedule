@@ -1,9 +1,9 @@
 import unittest
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from ga_engine import GeneticAlgorithmEngine
+from engine.ga_engine import GeneticAlgorithmEngine
 
 class TestGAEngine(unittest.TestCase):
     def test_ga_constraints(self):

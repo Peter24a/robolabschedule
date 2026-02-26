@@ -1,13 +1,13 @@
 import streamlit as st
-from database import get_db
-from crud import (
+from core.database import get_db
+from core.crud import (
     get_system_setting, set_system_setting, clear_schedule, create_reservation,
     get_all_teams, get_user_availability, get_all_group_blocks, get_all_reservations,
     delete_reservation, get_users_by_team, get_all_users, update_user_role_and_team,
     create_team
 )
-from ga_engine import GeneticAlgorithmEngine
-from models import (
+from engine.ga_engine import GeneticAlgorithmEngine
+from core.models import (
     KEY_OPENING_HOUR, KEY_CLOSING_HOUR, KEY_MANUAL_MODE, KEY_SCHEDULE_STATUS,
     ScheduleState, UserRole, GroupName
 )

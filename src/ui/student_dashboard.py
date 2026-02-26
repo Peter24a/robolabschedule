@@ -1,7 +1,7 @@
 import streamlit as st
-from database import get_db
-from crud import get_user_availability, set_user_availability, get_team_by_id, get_system_setting
-from models import KEY_CLOSING_HOUR, KEY_OPENING_HOUR
+from core.database import get_db
+from core.crud import get_user_availability, set_user_availability, get_team_by_id, get_system_setting
+from core.models import KEY_CLOSING_HOUR, KEY_OPENING_HOUR
 from ui.components import availability_grid
 import pandas as pd
 

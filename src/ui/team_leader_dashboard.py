@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
-from database import get_db
-from crud import get_user_availability, set_user_availability, get_team_by_id, get_users_by_team, lock_team_availability, unlock_team_availability, get_system_setting, get_all_reservations, create_reservation, delete_reservation, get_group_blocks
+from core.database import get_db
+from core.crud import get_user_availability, set_user_availability, get_team_by_id, get_users_by_team, lock_team_availability, unlock_team_availability, get_system_setting, get_all_reservations, create_reservation, delete_reservation, get_group_blocks
 from ui.components import availability_grid, schedule_grid
-from models import UserRole, KEY_MANUAL_MODE, KEY_OPENING_HOUR, KEY_CLOSING_HOUR
+from core.models import UserRole, KEY_MANUAL_MODE, KEY_OPENING_HOUR, KEY_CLOSING_HOUR
 from sqlalchemy.exc import IntegrityError
 
 MAX_HOURS_PER_TEAM = 3 # Hardcoded quota for Manual Mode

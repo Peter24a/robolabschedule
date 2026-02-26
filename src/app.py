@@ -1,8 +1,8 @@
 import streamlit as st
 import sys
 import os
-from database import get_db
-from crud import get_user_by_username, verify_password
+from core.database import get_db
+from core.crud import get_user_by_username, verify_password
 
 # Ensure project root is in path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))

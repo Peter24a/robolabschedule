@@ -1,7 +1,7 @@
-from database import engine, Base, SessionLocal
-import models
-from models import User, UserRole, GroupName, Team
-from crud import create_user, create_team, init_system_settings
+from core.database import engine, Base, SessionLocal
+import core.models as models
+from core.models import User, UserRole, GroupName, Team
+from core.crud import create_user, create_team, init_system_settings
 
 def init_db():
     print("Creating database tables...")

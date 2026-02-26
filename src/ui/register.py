@@ -1,7 +1,7 @@
 import streamlit as st
-from database import get_db
-from crud import create_user, get_user_by_username
-from models import UserRole
+from core.database import get_db
+from core.crud import create_user, get_user_by_username
+from core.models import UserRole
 
 def register_page():
     st.title("Registro de Usuario")

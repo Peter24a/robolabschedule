@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Enum as SqE
 from sqlalchemy.orm import relationship
 from enum import Enum
 import datetime
-from database import Base
+from core.database import Base
 
 class UserRole(str, Enum):
     SUPERADMIN = "SUPERADMIN"

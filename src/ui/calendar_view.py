@@ -1,7 +1,7 @@
 import streamlit as st
-from database import get_db
-from crud import get_all_reservations, get_system_setting
-from models import KEY_SCHEDULE_STATUS, ScheduleState
+from core.database import get_db
+from core.crud import get_all_reservations, get_system_setting
+from core.models import KEY_SCHEDULE_STATUS, ScheduleState
 from ui.components import schedule_grid
 
 def calendar_view():
